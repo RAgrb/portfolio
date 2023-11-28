@@ -14,7 +14,9 @@ lastUpdated = "Jan 02, 2006 15:04 MST"
 
 [sidebar]
 emoji = "🍥"
-subtitle = "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+subtitle = "Bonjour, je suis **Rania**, une étudiante passionnée par le génie logiciel. Actuellement inscrite en Master, je m'immerge dans l'univers captivant du développement informatique.
+
+Mon parcours académique m'a permis d'acquérir une solide compréhension des principes du génie logiciel, et je suis constamment motivée à approfondir mes connaissances dans ce domaine en constante évolution."
 
 [sidebar.avatar]
 enabled = true
