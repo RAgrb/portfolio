@@ -1,6 +1,6 @@
 ---
 title: "CV de Rania"
-date: 2023-11-28T10:00:00Z
+date: 2023-11-28T10:00:00
 image: cover.jpg
 ---
 
