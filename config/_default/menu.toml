@@ -29,5 +29,12 @@ name = "Email"
 url = "mailto:rania123.gribi123@gmail.com"
 
 [social.params]
-icon = "brand-email"
+icon = "brand-email.svg"
+
+# Redirect rule for the email link
+[[redirects]]
+  from = "/contact"  # The URL path you want to redirect from
+  to = "mailto:rania123.gribi123@gmail.com"  # The target email address
+  status = 302  # Use 302 for temporary redirects or 301 for permanent redirects
+
 
