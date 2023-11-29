@@ -4,6 +4,14 @@ mainSections = ["post"]
 rssFullContent = true
 favicon = "/favicon.png"
 
+[[menu.main]]
+  identifier = "cv"
+  name = "CV"
+  url = "/cv/"
+  weight = 1
+[params.cv]
+  title = "CV de Rania"
+  date = "2023-11-28T10:00:00Z"
 [footer]
 since = 2020
 customText = ""
