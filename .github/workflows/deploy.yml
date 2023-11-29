@@ -2,7 +2,8 @@ name: Deploy to Github Pages
 
 on:
     push:
-        branches: [master]
+        branches: [master]git pull --rebase origin master
+
     pull_request:
         branches: [master]
 
