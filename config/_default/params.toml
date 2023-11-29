@@ -6,7 +6,7 @@ favicon = "/favicon.png"
 
 [params.cv]
   title = "CV de Rania"
-  date = "2023-11-28T10:00:00Z"
+  date = "2023-11-28"
 [footer]
 since = 2020
 customText = ""
