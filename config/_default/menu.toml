@@ -22,3 +22,12 @@ url = "https://twitter.com/Raniaghribi"
 
 [social.params]
 icon = "brand-twitter"
+
+[[social]]
+identifier = "email"
+name = "Email"
+url = "mailto:rania123.gribi123@gmail.com"
+
+[social.params]
+icon = "brand-email"
+
