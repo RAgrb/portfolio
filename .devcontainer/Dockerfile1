@@ -1,19 +1,18 @@
-FROM docker.io/library/node:14
+# Utiliser une image de base avec Hugo installé
+FROM klakegg/hugo:latest
 
-WORKDIR /app
+# Définir le répertoire de travail
+WORKDIR /usr/src/app
 
-# Copy only the package.json and package-lock.json files
-COPY package*.json ./
-
-# Install dependencies
-RUN npm install
-
-# Copy the rest of the application files
+# Copier le contenu du site Hugo dans le conteneur
 COPY . .
 
-EXPOSE 3000
+# Exposer le port sur lequel le serveur Hugo va écouter
+EXPOSE 1313
 
-CMD ["npm", "start"]
+# Commande par défaut pour lancer le serveur Hugo
+CMD ["hugo", "server", "--bind", "0.0.0.0"]
+
 
 
 
