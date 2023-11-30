@@ -50,9 +50,9 @@ jobs:
                      push: true
                      tags: |
                        your-docker-username/your-docker-repo:latest
-              env:
-                         DOCKER_USERNAME: ${{ secrets.rania402 }}
-                         DOCKER_PASSWORD: ${{ secrets.Rania123+/}}
+                    env:
+                         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+                         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
             
 
             - name: Deploy 🚀
