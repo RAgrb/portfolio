@@ -1,0 +1,40 @@
+# Utilise l'image Node.js comme base
+ARG NODE_VERSION=16
+FROM mcr.microsoft.com/devcontainers/javascript-node:${NODE_VERSION}
+
+# Arguments pour Hugo
+ARG VARIANT=hugo
+ARG VERSION=latest
+
+# Installe les dépendances nécessaires pour Hugo
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends ca-certificates openssl git curl && \
+    rm -rf /var/lib/apt/lists/* && \
+    export VERSION=$(curl -s https://api.github.com/repos/gohugoio/hugo/releases/latest | grep "tag_name" | awk '{print substr($2, 3, length($2)-4)}') && \
+    export ARCH=$(case $(uname -m) in aarch64) echo ARM64 ;; *) echo 64bit ;; esac) && \
+    wget -O ${VERSION}.tar.gz https://github.com/gohugoio/hugo/releases/download/v${VERSION}/${VARIANT}_${VERSION}_Linux-${ARCH}.tar.gz && \
+    tar xf ${VERSION}.tar.gz && \
+    mv hugo /usr/bin/hugo && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# Répertoire de travail dans le conteneur
+WORKDIR /usr/src/app
+
+# Copie du code source du site Hugo dans le conteneur
+COPY . .
+
+# Hugo dev server port
+EXPOSE 1313
+
+# Commande pour construire le site Hugo
+RUN hugo --minify --gc
+
+# Commande pour démarrer le serveur Hugo
+CMD ["hugo", "server", "--bind=0.0.0.0", "--port=1313", "--appendPort=false", "--disableFastRender"]
+
+
+
+
+
+
