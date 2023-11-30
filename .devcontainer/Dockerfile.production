@@ -28,7 +28,7 @@ COPY . .
 EXPOSE 1313
 
 # Commande pour construire le site Hugo
-RUN hugo --minify --gc
+RUN hugo --minify --gc --ignoreVendor
 
 # Commande pour démarrer le serveur Hugo
 CMD ["hugo", "server", "--bind=0.0.0.0", "--port=1313", "--appendPort=false", "--disableFastRender"]
