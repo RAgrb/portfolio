@@ -1,6 +1,5 @@
 FROM docker.io/library/node:14
 
-RUN mkdir/app
 WORKDIR /app
 
 # Copy only the package.json and package-lock.json files
