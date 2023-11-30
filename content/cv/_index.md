@@ -26,7 +26,7 @@ image: cover.jpg
 * Développement Web : HTML, CSS, JavaScript
 * Bases de données : MySQL, MongoDB
 * Outils de gestion de version : Git
-* Frameworks : Spring, Django
+* Frameworks : Spring, Django, Laravel
 * Conception logicielle et architecture
 
 ## Projets
