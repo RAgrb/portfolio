@@ -1,0 +1,57 @@
+# Utilise l'image Node.js comme base
+ARG NODE_VERSION=16
+FROM mcr.microsoft.com/devcontainers/javascript-node:${NODE_VERSION}
+
+# Arguments pour Hugo
+ARG VARIANT=hugo_extended
+ARG VERSION=latest
+
+# Télécharge Go
+RUN apt-get update && apt-get install -y golang-go
+
+# Télécharge Hugo
+RUN apt-get install -y ca-certificates openssl git curl && \
+    rm -rf /var/lib/apt/lists/* && \
+    case ${VERSION} in \
+    latest) \
+    export VERSION=$(curl -s https://api.github.com/repos/gohugoio/hugo/releases/latest | grep "tag_name" | awk '{print substr($2, 3, length($2)-4)}') ;;\
+    esac && \
+    echo ${VERSION} && \
+    case $(uname -m) in \
+    aarch64) \
+    export ARCH=ARM64 ;; \
+    *) \
+    export ARCH=64bit ;; \
+    esac && \
+    echo ${ARCH} && \
+    wget -O ${VERSION}.tar.gz https://github.com/gohugoio/hugo/releases/download/v${VERSION}/${VARIANT}_${VERSION}_Linux-${ARCH}.tar.gz && \
+    tar xf ${VERSION}.tar.gz && \
+    mv hugo /usr/bin/hugo
+
+# Hugo dev server port
+EXPOSE 1313
+
+# [Optional] Décommentez cette section pour installer des paquets OS supplémentaires si nécessaire.
+#
+# RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
+#     && apt-get -y install --no-install-recommends <votre-liste-de-paquets-ici>
+
+# [Optional] Décommentez si vous souhaitez installer davantage de packages Node.js globaux
+# RUN sudo -u node npm install -g <votre-liste-de-paquets-ici>
+
+# Crée un conteneur image Docker
+# Copie du code source (y compris le thème Hugo) dans le conteneur
+COPY . /app
+
+# Spécifie le répertoire de travail
+WORKDIR /app
+
+# Commandes pour construire votre application Hugo
+RUN hugo --minify --gc
+
+# Commande pour démarrer le serveur Hugo
+CMD ["hugo", "server", "--bind=0.0.0.0", "--port=1313", "--appendPort=false", "--disableFastRender"]
+
+
+
+
